@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="load">Load people</button>
+    <ul id="list">
+
+    </ul>
+
+    <script>
+        let loadButtonElement = document.getElementById('load');
+        loadButtonElement.addEventListener('click', loadPeople);
+        let repoList = document.getElementById('list');
+
+        function loadPeople() {
+            fetch('https://api.github.com/users/testnakov2/repos')
+            .then((response) => response.json())
+            .then((data) => {
+                repoList.innerHTML = '';
+                for (let repo of data) {
+                    let li = document.createElement('li');
+                    li.textContent = repo.name;
+                    repoList.appendChild(li);
+                }
+            })
+            .catch((error) => alert(error.message))
+        }
+    </script>
+</body>
+</html>
