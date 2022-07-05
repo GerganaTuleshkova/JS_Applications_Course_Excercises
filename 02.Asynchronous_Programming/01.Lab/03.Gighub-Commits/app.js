@@ -20,7 +20,7 @@ function loadCommits() {
 		commitsList.innerHTML = '';
 		for (let commit of data) {
 			let li = document.createElement('li');
-            li.textContent = `${commit.commit.author.name}: ${commit.commit.message} `
+            li.textContent = `${commit.commit.author.name}: ${commit.commit.message}`;
 			
 			commitsList.appendChild(li);
 		}
