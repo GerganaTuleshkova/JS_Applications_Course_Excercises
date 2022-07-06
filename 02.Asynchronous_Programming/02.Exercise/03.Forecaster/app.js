@@ -1,10 +1,10 @@
 function attachEvents() {
     let locationElement = document.getElementById('location');
     let submitButton = document.getElementById('submit');
-    submitButton.addEventListener('click', showForecast);
-    let forecastDiv = document.getElementById('forecast')
-    let currentElement = document.getElementById('current')
+    let forecastDiv = document.getElementById('forecast');
+    let currentElement = document.getElementById('current');
     let upcomingElement = document.getElementById('upcoming');
+    submitButton.addEventListener('click', showForecast);
 
     let conditionMapper = {
         Sunny: "&#x2600", // ☀
@@ -18,13 +18,10 @@ function attachEvents() {
         Array.from(upcomingElement.children).slice(1).forEach(e => e.remove());
         forecastDiv.style.display = 'block';
 
-        console.log(locationElement.value)
-
-
         try {
             let response = await fetch('http://localhost:3030/jsonstore/forecaster/locations');
             if (response.ok == false) {
-                throw new Error(`Error: ${response.status} (${response.statusText})`);
+                throw new Error('Site not found');
             };
 
             let data = await response.json();
@@ -34,11 +31,9 @@ function attachEvents() {
                 throw new Error('Location not found');
             }
 
-            console.log(locationObj)
-
             let currentConditionResponse = await fetch(`http://localhost:3030/jsonstore/forecaster/today/${locationObj.code}`);
             if (currentConditionResponse.ok == false) {
-                throw new Error(`Error: ${currentConditionResponse.status} (${currentConditionResponse.statusText})`);
+                throw new Error('Current forecast not found');
             };
 
             let currentConditionData = await currentConditionResponse.json();
@@ -56,7 +51,7 @@ function attachEvents() {
 
             let threeDayForecatsResponse = await fetch(`http://localhost:3030/jsonstore/forecaster/upcoming/${locationObj.code}`);
             if (threeDayForecatsResponse.ok == false) {
-                throw new Error(`Error: ${threeDayForecatsResponse.status} (${threeDayForecatsResponse.statusText})`);
+                throw new Error('Upcoming forecast not found');
             };
             let threeDayForecatsData = await threeDayForecatsResponse.json();
             let divUpcoming = document.createElement('div');
@@ -89,10 +84,10 @@ function attachEvents() {
             </span>\
             `
             upcomingElement.appendChild(divUpcoming);
-            locationElement.value = ''
+            locationElement.value = '';
         }
         catch (error) {
-            forecastDiv.textContent = 'Error'
+            forecastDiv.textContent = 'Error';
         }
     }
 }
