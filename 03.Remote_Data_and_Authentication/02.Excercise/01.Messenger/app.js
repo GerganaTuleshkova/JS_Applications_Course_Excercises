@@ -9,9 +9,8 @@ function attachEvents() {
     submitButton.addEventListener('click', createMessage);
     refreshButton.addEventListener('click', loadMessages);
 
-    async function createMessage(event) {
-        event.preventDefault();
-
+    async function createMessage() {
+      
         try {
             if (!author.value || !content.value) {
                 throw new Error('All fields are required')
@@ -40,10 +39,12 @@ function attachEvents() {
 
         author.value = '';
         content.value = '';
+
+        loadMessages()
     }
 
-    async function loadMessages(event) {
-        event.preventDefault();
+    async function loadMessages() {
+        
         try {
             let response = await fetch(url);
 
