@@ -36,7 +36,6 @@ function attachEvents() {
         deleteButton.textContent = 'Delete';
         deleteButton.setAttribute('id', id)
         contactLi.appendChild(deleteButton);
-        // deleteButton.addEventListener('click', () => deleteContact(id));
         return contactLi;
     }
 
@@ -49,17 +48,15 @@ function attachEvents() {
                     method: 'DELETE',
                 })
 
-                console.log(response)
-
                 if (response.ok == false) {
                     throw new Error('Contact was not deleted!');
                 }
 
             } catch (err) {
-                alert(err.message)
+                alert(err.message);
             }
 
-            loadContacts()
+            loadContacts();
         }
     }
 
