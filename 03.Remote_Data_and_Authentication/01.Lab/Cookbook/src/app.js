@@ -58,8 +58,8 @@ window.addEventListener('load', async () => {
     
         sessionStorage.removeItem('accessToken');
         window.location = '/';
-    })
-    
+    });
+
     checkUser();
     const main = document.querySelector('main');
 
