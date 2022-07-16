@@ -4,6 +4,7 @@ function attachEvents() {
     let content = document.querySelector("[name='content']");
     let submitButton = document.getElementById('submit');
     let refreshButton = document.getElementById('refresh');
+    const url = 'http://localhost:3030/jsonstore/messenger';
 
     submitButton.addEventListener('click', createMessage);
     refreshButton.addEventListener('click', loadMessages);
@@ -12,12 +13,17 @@ function attachEvents() {
         event.preventDefault();
 
         try {
+            if (!author.value || !content.value) {
+                throw new Error('All fields are required')
+            }
+
             let message = {
                 'author': author.value,
                 'content': content.value,
             }
-            let response = await fetch('http://localhost:3030/jsonstore/messenger', {
-                method: 'post',
+            
+            let response = await fetch(url, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -29,7 +35,7 @@ function attachEvents() {
             }
 
         } catch (err) {
-            alert(err.message)
+            alert(err.message);
         }
 
         author.value = '';
@@ -39,14 +45,13 @@ function attachEvents() {
     async function loadMessages(event) {
         event.preventDefault();
         try {
-            let response = await fetch('http://localhost:3030/jsonstore/messenger3');
+            let response = await fetch(url);
 
             if (response.ok == false) {
-                throw new Error('Message could not be displayed');
+                throw new Error('Messages could not be displayed');
             }
 
             let data = await response.json();
-            console.log(data)
 
             let textMessages = [];
 
@@ -55,10 +60,8 @@ function attachEvents() {
             }
 
             messages.textContent = textMessages.join('\n');
-
-
         } catch (err) {
-            alert(err.message)
+            alert(err.message);
         }
     }
 }
