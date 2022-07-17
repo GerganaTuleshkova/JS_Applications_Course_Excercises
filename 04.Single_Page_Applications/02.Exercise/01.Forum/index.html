@@ -26,7 +26,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="#">Home</a>
+                    <a href="/" id="homeLink">Home</a>
                 </li>
             </ul>
         </nav>
@@ -35,120 +35,140 @@
     <!-- homepage -->
     <div class="container">
         <main>
-            <section id="homeView"> 
+            <section id="homeView">
                 <div class="new-topic-border">
-                <div class="header-background">
-                    <span>New Topic</span>
+                    <div class="header-background">
+                        <span>New Topic</span>
+                    </div>
+                    <form>
+                        <div class="new-topic-title">
+                            <label for="topicName">Title <span class="red">*</span></label>
+                            <input type="text" name="topicName" id="topicName">
+                        </div>
+                        <div class="new-topic-title">
+                            <label for="username">Username <span class="red">*</span></label>
+                            <input type="text" name="username" id="username">
+                        </div>
+                        <div class="new-topic-content">
+                            <label for="postText">Post <span class="red">*</span></label>
+                            <textarea type="text" name="postText" id="postText" rows="8" class="height"></textarea>
+                        </div>
+                        <div class="new-topic-buttons">
+                            <button name="cancel" class="cancel">Cancel</button>
+                            <button name="submit" class="public">Post</button>
+                        </div>
+
+                    </form>
                 </div>
-                <form>
-                    <div class="new-topic-title">
-                        <label for="topicName">Title <span class="red">*</span></label>
-                        <input type="text" name="topicName" id="topicName">
-                    </div>
-                    <div class="new-topic-title">
-                        <label for="username">Username <span class="red">*</span></label>
-                        <input type="text" name="username" id="username">
-                    </div>
-                    <div class="new-topic-content">
-                        <label for="postText">Post <span class="red">*</span></label>
-                        <textarea type="text" name="postText" id="postText" rows="8" class="height"></textarea>
-                    </div>
-                    <div class="new-topic-buttons">
-                        <button class="cancel">Cancel</button>
-                        <button class="public">Post</button>
-                    </div>
 
-                </form>
-            </div>
-
-            <div class="topic-title">
-
-                <!-- topic component  -->
-                <div class="topic-container">
-                    <div class="topic-name-wrapper">
-                        <div class="topic-name">
-                            <a href="#" class="normal">
-                                <h2>Angular 10</h2>
-                            </a>
-                            <div class="columns">
-                                <div>
-                                    <p>Date: <time>2020-10-10T12:08:28.451Z</time></p>
-                                    <div class="nick-name">
-                                        <p>Username: <span>David</span></p>
+                <!-- topic components start from here -->
+                <div class="topic-title">
+                    <!-- single topic component  -->
+                    <div class="topic-container">
+                        <div class="topic-name-wrapper">
+                            <div class="topic-name">
+                                <a href="#" class="normal">
+                                    <h2>Angular 10</h2>
+                                </a>
+                                <div class="columns">
+                                    <div>
+                                        <p>Date: <time>2020-10-10T12:08:28.451Z</time></p>
+                                        <div class="nick-name">
+                                            <p>Username: <span>David</span></p>
+                                        </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
+                    <!-- end single topic component  -->
                 </div>
-            </div>
+                <!-- end of topic components -->
 
             </section>
-            
+
             <section id="detailsView">
-            
-            <div class="container">
-                <!-- theme content  -->
-                <div class="theme-content">
-                    <!-- theme-title  -->
-                    <div class="theme-title">
-                        <div class="theme-name-wrapper">
-                            <div class="theme-name">
-                                <h2>Angular 10</h2>
+
+                <div class="container">
+                    <!-- theme content  -->
+                    <div class="theme-content">
+                        <!-- theme-title  -->
+                        <div class="theme-title">
+                            <div class="theme-name-wrapper">
+                                <div class="theme-name">
+                                    <h2 id="details-title">Angular 10</h2>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- comment  -->
+                        <!-- comment/post  -->
 
-                    <div class="comment">
-                        <div class="header">
-                            <img src="./static/profile.png" alt="avatar">
-                            <p><span>David</span> posted on <time>2020-10-10 12:08:28</time></p>
+                        <div class="comment">
+                            <div class="header">
+                                <img src="./static/profile.png" alt="avatar">
+                                <p><span id="details-username">David</span> posted on <time id="details-time">2020-10-10
+                                        12:08:28</time></p>
 
-                            <p class="post-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure facere
-                                sint
-                                dolorem quam,
-                                accusantium ipsa veniam laudantium inventore aut, tenetur quibusdam doloribus. Incidunt
-                                odio
-                                nostrum facilis ipsum dolorem deserunt illum?</p>
-                        </div>
+                                <p id="details-content" class="post-content">Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Iure
+                                    facere
+                                    sint
+                                    dolorem quam,
+                                    accusantium ipsa veniam laudantium inventore aut, tenetur quibusdam doloribus.
+                                    Incidunt
+                                    odio
+                                    nostrum facilis ipsum dolorem deserunt illum?</p>
+                            </div>
 
-
-                        <div id="user-comment">
-                            <div class="topic-name-wrapper">
-                                <div class="topic-name">
-                                    <p><strong>Daniel</strong> commented on <time>3/15/2021, 12:39:02 AM</time></p>
-                                    <div class="post-content">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure facere sint
-                                            dolorem quam.</p>
+                            <!-- comments on post section  -->
+                            <div id="user-comment">
+                                <!-- single comment start -->
+                                <div class="topic-name-wrapper">
+                                    <div class="topic-name">
+                                        <p><strong>Daniel</strong> commented on <time>3/15/2021, 12:39:02 AM</time></p>
+                                        <div class="post-content">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure facere sint
+                                                dolorem quam.</p>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- single comment end -->
+
+                                <!-- single comment start -->
+                                <div class="topic-name-wrapper">
+                                    <div class="topic-name">
+                                        <p><strong>Daniel</strong> commented on <time>3/15/2021, 12:39:02 AM</time></p>
+                                        <div class="post-content">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure facere sint
+                                                dolorem quam.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single comment end -->
+
+                            </div>
+                            <!-- end of comments on post  -->
+
+                        </div>
+
+                        <div class="answer-comment">
+                            <p><span>currentUser</span> comment:</p>
+                            <div class="answer">
+                                <form>
+                                    <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
+                                    <div>
+                                        <label for="username">Username <span class="red">*</span></label>
+                                        <input type="text" name="username" id="username">
+                                    </div>
+                                    <button>Post</button>
+                                </form>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="answer-comment">
-                        <p><span>currentUser</span> comment:</p>
-                        <div class="answer">
-                            <form>
-                                <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
-                                <div>
-                                    <label for="username">Username <span class="red">*</span></label>
-                                    <input type="text" name="username" id="username">
-                                </div>
-                                <button>Post</button>
-                            </form>
-                        </div>
                     </div>
-
-                </div>
             </section>
-            </div>
-        </main>
-
+    </div>
+    </main>
     </div>
 
     <footer>

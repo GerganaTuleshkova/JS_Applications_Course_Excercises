@@ -1,6 +1,3 @@
-
-
-
 export async function createPost(event) {
 
     let form = document.querySelector('form');

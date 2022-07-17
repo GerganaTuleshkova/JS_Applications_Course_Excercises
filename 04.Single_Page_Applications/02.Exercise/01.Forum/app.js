@@ -1,5 +1,9 @@
-import {createPost} from './create.js'
+// import {createPost} from './create.js';
+import {showHome} from './home.js';
+// import {showDetails} from './details.js';
 
-let postButton = document.querySelector('.new-topic-buttons .public');
-postButton.addEventListener('click', createPost);
+
+document.getElementById('homeLink').addEventListener('click', showHome);
+
+showHome();
 
