@@ -49,4 +49,9 @@ describe('E2E tests', async function () {
         notVisible = await page.isVisible('.accordion p');
         expect(notVisible).to.be.false;
     });
+
+    it.only('fills input form', async () => {
+        await page.goto('http://localhost:5500');
+        await page.fill('[name="email"]', 'peter@abv.bg');       
+    });
 });
