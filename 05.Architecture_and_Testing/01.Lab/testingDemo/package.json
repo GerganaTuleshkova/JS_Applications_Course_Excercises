@@ -1,0 +1,20 @@
+{
+  "name": "01.lab",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright-chromium": "^1.23.4"
+  },
+  "dependencies": {
+    "chai": "^4.3.6",
+    "playwright-core": "^1.23.4"
+  },
+  "description": ""
+}
