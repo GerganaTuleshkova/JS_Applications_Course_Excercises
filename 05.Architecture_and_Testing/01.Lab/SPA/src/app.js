@@ -13,7 +13,6 @@ document.getElementById('logoutBtn').addEventListener('click', onLogout);
 
 checkUserNav();
 
-
 const sections = {
     'homeBtn': showHome,
     'catalogBtn': showCatalog,
