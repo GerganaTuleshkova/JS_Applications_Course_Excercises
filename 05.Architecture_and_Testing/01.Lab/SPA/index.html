@@ -3,10 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPA Demo</title>
     <script src="src/app.js" type="module"></script>
     <style>
-        #views, #userNav, #guestNav {
+        #views {
             display: none;
         }
 
@@ -22,35 +24,37 @@
         <a href="/catalog" id="catalogBtn">Catalog</a>
         <a href="/about" id="aboutBtn">About</a>
         <div id="guestNav">
-            <a href="/login" id="loginBtn">Login</a>
-            <a href="/register" id="registerBtn">Register</a>
+          <a href="/login" id="loginBtn">Login</a>
+        <a href="/register" id="registerBtn">Register</a>  
         </div>
         <div id="userNav">
             <a href="/create" id="createBtn">Create</a>
-            <a href="javascript:void(0)" id="logoutBtn">Logout</a>
+            <a href="javascript: void(0)" id="logoutBtn">Logout</a>
             <span id="greeting"></span>
-        </div>
+        </div> 
+        
     </nav>
-
-    <h1>SPA Demo</h1>
-
-    <main></main>
-
+    <h2>SPA demo</h2>
+    <main>
+        
+    </main>
 
     <div id="views">
         <section id="homeView">
-            <h2>Home Page</h2>
+            <h2>Home</h2>
             <p>Welcome to our site!</p>
         </section>
 
         <section id="catalogView">
             <h2>Catalog</h2>
-            <ul></ul>
+            <ul>
+                
+            </ul>
         </section>
 
         <section id="aboutView">
             <h2>About Us</h2>
-            <p>Phone: +1-555-7163</p>
+            <p>Phone +359 1233</p>
         </section>
 
         <section id="loginView">
@@ -67,19 +71,21 @@
             <form>
                 <label>E-mail <input type="text" name="email"></label>
                 <label>Password <input type="password" name="password"></label>
-                <label>Repeat <input type="password" name="repass"></label>
-                <input type="submit" value="Sign Up">
+                <label>Repeat Password <input type="password" name="repass"></label>
+                <input type="submit" value="Register">
             </form>
         </section>
 
         <section id="createView">
             <h2>Create Movie</h2>
             <form>
-                <label>Title <input type="text" name="title"></label>
+                <label>Title <input type="text" name="title"></label>                
                 <input type="submit" value="Create">
             </form>
         </section>
+
     </div>
+
 </body>
 
 </html>

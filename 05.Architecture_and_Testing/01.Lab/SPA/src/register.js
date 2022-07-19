@@ -1,33 +1,40 @@
-import { post } from './api.js';
-import { createSubmitHandler } from './util.js';
+import { post } from "./api.js";
+// import { render } from "./dom.js";
+import { showHome } from "./home.js";
+import { checkUserNav, createSubmitHandler } from "./util.js";
 
+const registerSection = document.getElementById('registerView');
+let form = registerSection.querySelector('form');
 
-const section = document.getElementById('registerView');
-const form = section.querySelector('form');
-createSubmitHandler(form, onSubmit);
-section.remove();
-let ctx = null;
+// form.addEventListener('submit', onRegister);
+createSubmitHandler(form, onRegister)
 
-export function showRegister(inCtx) {
-    ctx = inCtx;
-    ctx.render(section);
+registerSection.remove();
+
+export function showRegister(context) {
+    context.render(registerSection);
 }
 
-async function onSubmit({email, password, repass}) {
+async function onRegister({email, password, repass}) {
+    
     if (email == '' || password == '') {
-        return alert('All fields are required!');
-    }
-    if (password != repass) {
-        return alert('Passwords don\'t match!');
+        return alert('All fields are required');
     }
 
-    const { accessToken, _id } = await post('/users/register', { email, password });
-    const userData = {
+    if (password != repass) {
+        return alert('Passwords don\'t match');
+    }
+
+    let { accessToken, _id } =  await post('/users/register', {email, password, repass})
+
+    let userData = {
         email,
         accessToken,
-        id: _id
-    };
+        id: _id,
+    }
+
     sessionStorage.setItem('userData', JSON.stringify(userData));
-    ctx.checkUserNav();
-    ctx.goTo('homeBtn');
+    checkUserNav();
+    showHome();
 }
+

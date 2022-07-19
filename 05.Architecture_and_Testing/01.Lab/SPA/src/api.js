@@ -1,45 +1,49 @@
-const host = 'http://localhost:3030';
+let baseUrl = 'http://localhost:3030';
 
-async function request(method, url, data) {
-    const options = {
+
+async function request(method, urlEnding, dataInput) {
+    let userData = JSON.parse(sessionStorage.getItem('userData'));
+
+    let options = {
         method,
         headers: {},
-    };
-
-    if (data !== undefined) {
-        options.headers['Content-Type'] = 'application/json';
-        options.body = JSON.stringify(data);
     }
 
-    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (dataInput !== undefined) {
+        options.headers['Content-Type'] = 'application/json';
+        options.body = JSON.stringify(dataInput);
+    }
 
     if (userData != null) {
         options.headers['X-Authorization'] = userData.accessToken;
     }
 
     try {
-        const res = await fetch(host + url, options);
+        let response = await fetch(baseUrl + urlEnding, options);
 
-        if (res.ok == false) {
-            const error = await res.json();
-            throw Error(error.message);
+        if (response.ok == false) {
+            let error = await response.json();
+            throw new Error(error.message)
         }
 
-        if (res.status == 204) {
+        if (response.status == 204) {
             return res;
         } else {
-            return await res.json();
+            return await response.json();
         }
-    } catch (err) {
-        alert(err.message);
-        throw err;
+
+    } catch (error) {
+        alert(error.message);
+        throw error;
     }
 }
 
-export async function get(url) {
-    return request('get', url);
+
+export async function get(urlEnding) {
+    return request('GET', urlEnding);
 }
 
-export async function post(url, data) {
-    return request('post', url, data);
+export async function post(urlEnding, data) {
+    return request('POST', urlEnding, data);
 }
+

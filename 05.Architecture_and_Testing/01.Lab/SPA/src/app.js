@@ -4,12 +4,15 @@ import { showAbout } from './about.js';
 import { showLogin } from './login.js';
 import { showRegister } from './register.js';
 import { showCreate } from './create.js';
-
 import { checkUserNav, onLogout } from './util.js';
 import { render } from './dom.js';
 
 
 document.querySelector('nav').addEventListener('click', onNavigate);
+document.getElementById('logoutBtn').addEventListener('click', onLogout);
+
+checkUserNav();
+
 
 const sections = {
     'homeBtn': showHome,
@@ -18,13 +21,8 @@ const sections = {
     'loginBtn': showLogin,
     'registerBtn': showRegister,
     'createBtn': showCreate,
-    'logoutBtn': onLogout
-};
+}
 
-
-checkUserNav();
-
-// Start application in home view
 goTo('homeBtn');
 
 function onNavigate(event) {
@@ -32,7 +30,7 @@ function onNavigate(event) {
         const viewName = event.target.id;
         if (goTo(viewName)) {
             event.preventDefault();
-        }
+        };
     }
 }
 
@@ -43,11 +41,11 @@ function goTo(viewName) {
         view({
             render,
             goTo,
-            checkUserNav
         });
-
         return true;
     } else {
         return false;
     }
 }
+
+

@@ -1,6 +1,8 @@
-const section = document.getElementById('aboutView');
-section.remove();
+// import { render } from "./dom.js";
 
-export function showAbout(ctx) {
-    ctx.render(section);
+const aboutSection = document.getElementById('aboutView');
+aboutSection.remove();
+
+export function showAbout(context) {
+   context.render(aboutSection);
 }
