@@ -5,22 +5,32 @@ import { deleteItem } from "./delete.js";
 
 const ideaDetailsSection = document.getElementById('idea-detailsView');
 // let holder = dashboardSection.querySelector('#dashboard-holder');
-ideaDetailsSection.remove()
+ideaDetailsSection.remove();
 
+const userData = JSON.parse(localStorage.getItem('userData'));
 
-export async function showDetails(event) {
+export async function showDetails(event, context) {
 
+    const userData = JSON.parse(localStorage.getItem('userData'));
     if (event.target.className == 'btn') {
         render(ideaDetailsSection);
 
         const details = await get(`/data/ideas/${event.target.id}`);
 
-        ideaDetailsSection.replaceChildren(CreateIdeaItem(details));
-        ideaDetailsSection.addEventListener('click', deleteItem)
+        let ideaToDisplay = CreateIdeaItem(details);
+        let deleteButton = ideaToDisplay.querySelector('a');
+
+        if (userData == null || userData.id != details._ownerId) {   
+            // deleteButton.style.display = 'none';
+            deleteButton.remove();
+        } 
+
+        ideaDetailsSection.replaceChildren(ideaToDisplay);
+        ideaDetailsSection.addEventListener('click', (event) => deleteItem(context))
     }
 }
 
-function CreateIdeaItem(idea) {
+function CreateIdeaItem(idea) { 
     let div = document.createElement('div');
     div.className = 'container home some';
 
@@ -32,8 +42,9 @@ function CreateIdeaItem(idea) {
     <p class="idea-description">${idea.description}</p>\
     </div>\
     <div class="text-center">\
-    <a class="btn detb" data-id="${idea._id}" name="${idea._ownerId}" href="javascript: void(0)">Delete</a>\
-    </div>`
+    <a class="btn detb" data-id="${idea._id}" name="${idea._ownerId}" href="">Delete</a>\
+    </div>`;
 
+    //javascript: void(0)   
     return div;
 }

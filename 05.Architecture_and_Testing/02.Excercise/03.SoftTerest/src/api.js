@@ -2,7 +2,8 @@ let baseUrl = 'http://localhost:3030';
 
 
 async function request(method, urlEnding, dataInput) {
-    let userData = JSON.parse(sessionStorage.getItem('userData'));
+    // let userData = JSON.parse(sessionStorage.getItem('userData'));
+    // with localStorage instead of session storage
 
     let options = {
         method,
@@ -14,6 +15,7 @@ async function request(method, urlEnding, dataInput) {
         options.body = JSON.stringify(dataInput);
     }
 
+    let userData = JSON.parse(localStorage.getItem('userData'));
     if (userData != null) {
         options.headers['X-Authorization'] = userData.accessToken;
     }
@@ -22,12 +24,16 @@ async function request(method, urlEnding, dataInput) {
         let response = await fetch(baseUrl + urlEnding, options);
 
         if (response.ok == false) {
+
+            if (response.status == 403) {
+                localStorage.removeItem('userData');
+            }
             let error = await response.json();
             throw new Error(error.message)
         }
 
         if (response.status == 204) {
-            return res;
+            return response;
         } else {
             return await response.json();
         }
@@ -37,7 +43,6 @@ async function request(method, urlEnding, dataInput) {
         throw error;
     }
 }
-
 
 export async function get(urlEnding) {
     return request('GET', urlEnding);

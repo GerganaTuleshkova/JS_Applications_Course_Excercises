@@ -32,8 +32,10 @@ async function onRegister({email, password, repeatPassword}) {
         accessToken,
         id: _id,
     }
+    // sessionStorage.setItem('userData', JSON.stringify(userData));
+    // with localStorage instead of session storage
+    localStorage.setItem('userData', JSON.stringify(userData));
 
-    sessionStorage.setItem('userData', JSON.stringify(userData));
     checkUserNav();
     showHome();
 }

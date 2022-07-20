@@ -1,7 +1,8 @@
 import { showHome } from "./home.js";
 
 export function checkUserNav() {
-    const userData = JSON.parse(sessionStorage.getItem('userData'));
+    // const userData = JSON.parse(sessionStorage.getItem('userData'));
+    const userData = JSON.parse(localStorage.getItem('userData'));
 
     if (userData != null) {
         document.getElementById('userNav').style.display = 'inline-block';
@@ -15,7 +16,8 @@ export function checkUserNav() {
 };
 
 export function onLogout() {
-    let userData = JSON.parse(sessionStorage.getItem('userData'));
+    // let userData = JSON.parse(sessionStorage.getItem('userData'));
+    let userData = JSON.parse(localStorage.getItem('userData'));
 
     fetch('http://localhost:3030/users/logout', {
         method:'GET',
@@ -23,7 +25,8 @@ export function onLogout() {
             'X-Authorization': userData.accessToken,
         },
     })
-    sessionStorage.removeItem('userData');
+    // sessionStorage.removeItem('userData');
+    localStorage.removeItem('userData');
     checkUserNav();
     showHome();
 }

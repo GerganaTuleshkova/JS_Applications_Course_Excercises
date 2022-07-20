@@ -6,17 +6,21 @@ import { createSubmitHandler } from "./util.js";
 
 const createSection = document.getElementById('createView');
 createSection.remove();
-let form = createSection.querySelector('form');
 
+let form = createSection.querySelector('form');
 // form.addEventListener('submit', onSubmit);
-createSubmitHandler(form, onSubmit)
+createSubmitHandler(form, onSubmit);
+
+let ctx = null;
 
 export function showCreate(context) {
+    ctx = context
     context.render(createSection);
 }
 
-async function onSubmit({title, description, img}) {
-    await post('/data/ideas', {title, description, img});
+async function onSubmit({title, description, imageURL}) {
+    await post('/data/ideas', {title, description, img: imageURL});
     // showDashboard();
-    showHome();
+    // showHome();
+    ctx.goTo('dashboard');
 };

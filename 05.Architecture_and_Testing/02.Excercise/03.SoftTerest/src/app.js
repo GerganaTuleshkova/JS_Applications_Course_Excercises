@@ -3,6 +3,7 @@ import {showDashboard} from './dashboard.js';
 import {showLogin} from './login.js';
 import {showRegister} from './register.js';
 import {showCreate} from './create.js';
+// import {showLogout} from './logout';
 // import {showDetails} from './ideaDetails.js';
 import {render} from './dom.js';
 import {checkUserNav, onLogout } from './util.js';
@@ -22,13 +23,19 @@ const sections = {
     'login': showLogin,
     'register': showRegister,
     'create': showCreate,
+    // 'logout': showLogout,
 }
 
 goTo('home');
 
 function onNavigate(event) {
-    if (event.target.tagName == 'A') {
-        const viewName = event.target.id;
+    let target = event.target;
+    if (target.tagName == 'IMG') {
+        target = target.parentElement;
+    }
+    if (target.tagName == 'A') {
+        const viewName = target.id;
+
         if (goTo(viewName)) {
             event.preventDefault();
         };

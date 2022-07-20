@@ -4,4 +4,5 @@ homeSection.remove()
 
 export function showHome() {
     document.querySelector('main').replaceChildren(homeSection);
+    // context.render(homeSection);
 }
