@@ -26,7 +26,7 @@ function start() {
 
     function onDetails(clickedContactData) {
         clickedContactData.details = !clickedContactData.details;
-        renderCards()
+        renderCards();
     }
 
     function renderCards() {
