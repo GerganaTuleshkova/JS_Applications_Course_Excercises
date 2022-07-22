@@ -9,7 +9,7 @@ ideaDetailsSection.remove();
 
 const userData = JSON.parse(localStorage.getItem('userData'));
 
-export async function showDetails(event, context) {
+export async function showDetails(event) {
 
     const userData = JSON.parse(localStorage.getItem('userData'));
     if (event.target.className == 'btn') {
@@ -26,7 +26,7 @@ export async function showDetails(event, context) {
         } 
 
         ideaDetailsSection.replaceChildren(ideaToDisplay);
-        ideaDetailsSection.addEventListener('click', (event) => deleteItem(context))
+        ideaDetailsSection.addEventListener('click', deleteItem)
     }
 }
 
