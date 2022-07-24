@@ -3,12 +3,12 @@ import { login } from '../data/users.js';
 
 
 const loginTemplate = (onSubmit) => html`
-<h2>Login</h2>
-<form @submit=${onSubmit}>
-    <label>Email: <input type="text" name="email"></label>
-    <label>Password: <input type="password" name="password"></label>
-    <input type="submit" value="Login">
-</form>`;
+    <h2>Login</h2>
+    <form @submit=${onSubmit}>
+        <label>Email: <input type="text" name="email"></label>
+        <label>Password: <input type="password" name="password"></label>
+        <input type="submit" value="Login">
+    </form>`;
 
 
 export function showLogin(ctx) {
