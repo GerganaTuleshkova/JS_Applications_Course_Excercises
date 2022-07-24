@@ -24,25 +24,25 @@ export async function getProductById(id) {
 
 export async function create(productData) {
     
-    if (productData.make.length < 4) {
-        return alert('Make must be at least 4 symbols long!');
-    }
-    if (productData.model.length < 4) {
-        return alert('Model must be at least 4 symbols long!');
-    }
+    // if (productData.make.length < 4) {
+    //     return alert('Make must be at least 4 symbols long!');
+    // }
+    // if (productData.model.length < 4) {
+    //     return alert('Model must be at least 4 symbols long!');
+    // }
 
-    if (Number(productData.year) < 1950 || Number(productData.year) > 2050) {
-        return alert('Invalid year!');
-    }
-    if (productData.description.length <= 10) {
-        return alert('Description must be at least 11 symbols long!');
-    }
-    if (Number(productData.price) <= 0) {
-        return alert('Price must be a positive number');
-    }
-    if (productData.img == '') {
-        return alert('Url is required');
-    }
+    // if (Number(productData.year) < 1950 || Number(productData.year) > 2050) {
+    //     return alert('Invalid year!');
+    // }
+    // if (productData.description.length <= 10) {
+    //     return alert('Description must be at least 11 symbols long!');
+    // }
+    // if (Number(productData.price) <= 0) {
+    //     return alert('Price must be a positive number');
+    // }
+    // if (productData.img == '') {
+    //     return alert('Url is required');
+    // }
 
     // checkInput(productData);
 

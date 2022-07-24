@@ -72,6 +72,7 @@ export function showRegister(ctx) {
             await register(email, password, repass);
 
             ctx.page.redirect('/');
+            
         } catch (error) {
             const message = error.message || error.error.message
             update(message, error.errors || {})

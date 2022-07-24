@@ -18,11 +18,11 @@ const createTemplate = (onSubmit) => html`
             </div>
             <div class="form-group has-success">
                 <label class="form-control-label" for="new-model">Model</label>
-                <input class="form-control is-valid" id="new-model" type="text" name="model">
+                <input class="form-control" id="new-model" type="text" name="model">
             </div>
             <div class="form-group has-danger">
                 <label class="form-control-label" for="new-year">Year</label>
-                <input class="form-control is-invalid" id="new-year" type="number" name="year">
+                <input class="form-control" id="new-year" type="number" name="year">
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="new-description">Description</label>
@@ -60,21 +60,44 @@ export function showCreate(ctx) {
         let productData = {
             make: formData.get('make'),
             model: formData.get('model'),
-            year: formData.get('year'),
+            year: Number(formData.get('year')),
             description: formData.get('description'),
-            price: formData.get('price'),
+            price: Number(formData.get('price')),
             img: formData.get('img'),
             material: formData.get('material'),
         }
+        try {
+            if (productData.make.length < 4) {
+                return alert('Make must be at least 4 symbols long!');
+            }
+            if (productData.model.length < 4) {
+                return alert('Model must be at least 4 symbols long!');
+            }
+
+            if (Number(productData.year) < 1950 || Number(productData.year) > 2050) {
+                return alert('Invalid year!');
+            }
+            if (productData.description.length <= 10) {
+                return alert('Description must be at least 11 symbols long!');
+            }
+            if (Number(productData.price) <= 0) {
+                return alert('Price must be a positive number');
+            }
+            if (productData.img == '') {
+                return alert('Url is required');
+            }
 
 
-        let response = await create(productData);
+            let response = await create(productData);
 
-        if (response.ok == false) {
-            let error = response.json()
-            throw new Error(error.message);
+            if (response.ok == false) {
+                let error = response.json()
+                throw new Error(error.message);
+            }
+
+            ctx.page.redirect('/');
+        } catch (error) {
+            alert(error.message)
         }
-
-        ctx.page.redirect('/');
     }
 }
