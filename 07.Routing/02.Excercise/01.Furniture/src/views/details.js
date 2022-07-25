@@ -32,7 +32,7 @@ const detailsTemplate = (product) => html`
         `;
 
 
-export async function showDetails(ctx) {
+export async function detailsView(ctx) {
     const productId = ctx.params.productId;
     let userData = ctx.userData();
 

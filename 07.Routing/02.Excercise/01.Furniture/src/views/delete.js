@@ -1,7 +1,7 @@
 import { deleteProduct, getProductById } from '../data/furnitureCalls.js';
 
 
-export async function showDelete(ctx) {
+export async function deleteView(ctx) {
     const productId = ctx.params.productId;
 
     const product = await getProductById(productId);

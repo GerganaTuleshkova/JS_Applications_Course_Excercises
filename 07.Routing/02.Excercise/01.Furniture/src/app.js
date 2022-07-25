@@ -1,14 +1,14 @@
 import page from '../../node_modules/page/page.mjs';
 import { render as litRender } from '../../node_modules/lit-html/lit-html.js';
-import { showHome } from './views/home.js';
-import { showDetails } from './views/details.js';
-import { showLogin } from './views/login.js';
-import { showRegister } from './views/register.js';
-import { showCreate } from './views/create.js';
+import { homeView } from './views/home.js';
+import { detailsView } from './views/details.js';
+import { loginView } from './views/login.js';
+import { registerView } from './views/register.js';
+import { createView } from './views/create.js';
 import { showLogout } from './views/logout.js';
-import { showEdit } from './views/edit.js';
-import { showDelete } from './views/delete.js';
-import { showMyPublications } from './views/myFurniture.js';
+import { editView } from './views/edit.js';
+import { deleteView } from './views/delete.js';
+import { myPublicationsView } from './views/myFurniture.js';
 import { checkUserNav, getUserData } from './views/utils.js';
 
 
@@ -17,14 +17,14 @@ const container = document.querySelector('.container');
 page(decorateContext);
 
 page('/index.html', '/');
-page('/', showHome);
-page('/myFurniture', showMyPublications);
-page('/catalog/:productId', showDetails);
-page('/create', showCreate);
-page('/edit/:productId', showEdit);
-page('/delete/:productId', showDelete);
-page('/login', showLogin);
-page('/register', showRegister);
+page('/', homeView);
+page('/myFurniture', myPublicationsView);
+page('/catalog/:productId', detailsView);
+page('/create', createView);
+page('/edit/:productId', editView);
+page('/delete/:productId', deleteView);
+page('/login', loginView);
+page('/register', registerView);
 page('/logout', showLogout);
 page('*', notFound);
 

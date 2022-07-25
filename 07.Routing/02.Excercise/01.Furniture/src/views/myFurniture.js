@@ -30,7 +30,7 @@ const myFurnitureTemplate = (furnitureAll) => html`
 `;
 
 
-export async function showMyPublications(ctx) {
+export async function myPublicationsView(ctx) {
     // let userData = JSON.parse(sessionStorage.getItem('userData'));
     let userData = ctx.userData();
     let userId = userData.id

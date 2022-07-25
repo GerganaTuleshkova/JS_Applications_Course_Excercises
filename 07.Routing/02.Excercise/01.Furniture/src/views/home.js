@@ -29,7 +29,7 @@ const homeTemplate = (furnitureAll) => html`
 </div>
 `;
 
-export async function showHome(ctx) {
+export async function homeView(ctx) {
     ctx.render(homeTemplate([]));
     
     const furnitureAllItems = await getFurnitureAll();

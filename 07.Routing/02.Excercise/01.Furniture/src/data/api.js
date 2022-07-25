@@ -34,6 +34,7 @@ async function request(method, pathname, dataInput) {
         }
 
     } catch (error) {
+        //try without the alert!
         alert(error.message);
         throw error;
     }

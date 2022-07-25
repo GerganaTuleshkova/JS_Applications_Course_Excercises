@@ -50,7 +50,7 @@ const createTemplate = (product, onSubmit) => html`
 `;
 
 
-export async function showEdit(ctx) {
+export async function editView(ctx) {
     const productId = ctx.params.productId;    
 
     const product = await getProductById(productId);

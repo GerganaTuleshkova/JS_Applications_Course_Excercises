@@ -32,7 +32,7 @@ const registerTemplate = (onSubmit, errorMsg, errors) => html`
 
 
 
-export function showRegister(ctx) {
+export function registerView(ctx) {
     update(null, {});
 
     function update(errorMsg, errors) {
@@ -74,8 +74,8 @@ export function showRegister(ctx) {
             ctx.page.redirect('/');
             
         } catch (error) {
-            const message = error.message || error.error.message
-            update(message, error.errors || {})
+            const message = error.message || error.error.message;
+            update(message, error.errors || {});
         }
     }
 }

@@ -49,13 +49,40 @@ const createTemplate = (onSubmit) => html`
         `;
 
 
-export function showCreate(ctx) {
+export function createView(ctx) {
 
     ctx.render(createTemplate(onSubmit));
+
+    function validate(element, bool) {
+        if (!bool) {
+            
+            element.classList.add('is-invalid');
+            element.classList.remove('is-valid');
+        } else {
+            element.classList.add('is-valid');
+            element.classList.remove('is-invalid');
+        }
+    }
+
 
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
+
+        let makeEl = document.getElementById('new-make');
+        let modelEl = document.getElementById('new-model');
+        let yearEl = document.getElementById('new-year');
+        let descriptionEl = document.getElementById('new-description');
+        let priceEl = document.getElementById('new-price');
+        let imgEl = document.getElementById('new-image');
+
+        makeEl.value.length < 4 ? validate(makeEl, false) : validate(makeEl, true);
+        modelEl.value.length < 4 ? validate(modelEl, false) : validate(modelEl, true);
+        Number(yearEl.value) < 1950 || Number(yearEl.value) > 2050 ? validate(yearEl, false) : validate(yearEl, true);
+        descriptionEl.value.length <= 10 ? validate(descriptionEl, false) : validate(descriptionEl, true);
+        Number(priceEl.value) <= 0 ? validate(priceEl, false) : validate(priceEl, true);
+        imgEl.value == '' ? validate(imgEl, false) : validate(imgEl, true);
+
 
         let productData = {
             make: formData.get('make'),
@@ -101,3 +128,5 @@ export function showCreate(ctx) {
         }
     }
 }
+
+
