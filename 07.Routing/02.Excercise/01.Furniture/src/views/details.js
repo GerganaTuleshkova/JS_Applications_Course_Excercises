@@ -34,8 +34,8 @@ const detailsTemplate = (product) => html`
 
 export async function detailsView(ctx) {
     const productId = ctx.params.productId;
-    let userData = ctx.userData();
 
+    let userData = ctx.userData();
     
     const product = await getProductById(productId);
 
