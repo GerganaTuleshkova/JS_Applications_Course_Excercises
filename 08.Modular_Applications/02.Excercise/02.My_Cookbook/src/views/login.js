@@ -21,8 +21,8 @@ export function loginView(ctx) {
 }
 
 async function onSubmit(ctx, formData, event) {
-    let email = formData.email;
-    let password = formData.password;
+    let email = formData.email.trim();
+    let password = formData.password.trim();
 
     // chech input is valid:
     if (email == '' || password == '') {

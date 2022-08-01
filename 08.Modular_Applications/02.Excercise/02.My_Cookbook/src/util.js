@@ -12,11 +12,11 @@ export function getAccessToken() {
 }
 
 export function clearUserData() {
-    sessionStorage.removeItem('userData')
+    sessionStorage.removeItem('userData');
 }
 
 export function setUserData(data) {
-    sessionStorage.setItem('userData', JSON.stringify(data))
+    sessionStorage.setItem('userData', JSON.stringify(data));
 }
 
 export function createSubmitHandler(ctx, handler) {

@@ -29,6 +29,7 @@ page('/catalog', catalogView);
 page('/catalog/:id', preload, detailsView);
 page('/edit/:id', preload, editView);
 page('/create', createView);
+
 page('/login', loginView);
 page('/register', registerView);
 
