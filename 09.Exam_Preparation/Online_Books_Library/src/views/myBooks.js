@@ -6,12 +6,12 @@ const myBooksTemplate = (books) => html`
     <section id="my-books-page" class="my-books">
         <h1>My Books</h1>
     
-        ${books.length == 0 ? html` <p class="no-books">No books in database!</p>`
-        :
-        html`<ul class="my-books-list">
-            ${books.map(bookTemplate)}
-        </ul>`}
-    
+        ${books.length == 0 
+        ? html` <p class="no-books">No books in database!</p>`
+        : html`<ul class="my-books-list">
+                ${books.map(bookTemplate)}
+                </ul>`
+        }    
     </section>
     `;
 

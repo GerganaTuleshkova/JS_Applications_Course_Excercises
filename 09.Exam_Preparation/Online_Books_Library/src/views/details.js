@@ -9,23 +9,22 @@ const detailsTemplate = (book, likes, isOwner, bookLikedByUser, onDelete, onLike
             <p class="type">Type: ${book.type}</p>
             <p class="img"><img src=${book.imageUrl}></p>
             <div class="actions">
-                ${isOwner == true ? html`
-                <!-- Edit/Delete buttons ( Only for creator of this book )  -->
-                <a class="button" href="/edit/${book._id}">Edit</a>
-                <a class="button" href="javascript:void(0)" @click=${onDelete}>Delete</a>`
-        :
-        nothing
-        }
+                ${isOwner == true 
+                    ? html`
+                        <!-- Edit/Delete buttons ( Only for creator of this book )  -->
+                        <a class="button" href="/edit/${book._id}">Edit</a>
+                        <a class="button" href="javascript:void(0)" @click=${onDelete}>Delete</a>`
+                    : nothing
+                }
     
-                ${(isOwner == false && bookLikedByUser == 0) ? html`
-                <!-- Like button ( Only for logged-in users, which is not creators of the current book ) -->
-                <a class="button" href="javascript:void(0)" @click=${onLike}>Like</a>`
-        :
-        nothing
-        }
+                ${(isOwner == false && bookLikedByUser == 0) 
+                    ? html`
+                        <!-- Like button ( Only for logged-in users, which is not creators of the current book ) -->
+                        <a class="button" href="javascript:void(0)" @click=${onLike}>Like</a>`
+                    : nothing
+                }
     
-                <!-- Bonus -->
-    
+                <!-- Bonus -->    
                 <!-- ( for Guests and Users )  -->
                 <div class="likes">
                     <img class="hearts" src="/images/heart.png">
@@ -41,7 +40,7 @@ const detailsTemplate = (book, likes, isOwner, bookLikedByUser, onDelete, onLike
     </section>
     `;
 
-let likeButton = document.querySelector('.button')
+let likeButton = document.querySelector('.button');
 
 export async function detailsView(ctx) {
     let book = ctx.book;
@@ -52,13 +51,10 @@ export async function detailsView(ctx) {
     let bookLikedByUser = 1;
 
     if (ctx.user) {
-        bookLikedByUser = await isLikedByUser(book._id, ctx.user._id)
+        bookLikedByUser = await isLikedByUser(book._id, ctx.user._id);
     }
 
-    console.log(likes)
-
     ctx.render(detailsTemplate(book, likes, isOwner, bookLikedByUser, () => onDelete(book, ctx), () => onLike(book, ctx)));
-
 }
 
 async function onDelete(book, ctx) {
@@ -74,12 +70,10 @@ async function onDelete(book, ctx) {
 }
 
 async function onLike(book, ctx) {
-    let bookId = book._id
+    let bookId = book._id;
 
-    console.log('liked clicked')
     try {
         await like({ bookId });
-
         ctx.page.redirect(`/catalog/${book._id}`);
 
     } catch (err) {
